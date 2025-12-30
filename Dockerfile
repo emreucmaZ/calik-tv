@@ -10,10 +10,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     g++ \
     && rm -rf /var/lib/apt/lists/*
 
-COPY package*.json ./
-RUN npm install --omit=dev
+# Client build
+COPY client/package*.json ./client/
+RUN cd client && npm install
 
-COPY . .
+COPY client/ ./client/
+RUN cd client && npm run build
+
+# Server
+COPY server/package*.json ./server/
+RUN cd server && npm install --omit=dev
+
+COPY server/ ./server/
+
+WORKDIR /home/node/app/server
 
 EXPOSE 3000 1935 8000
 

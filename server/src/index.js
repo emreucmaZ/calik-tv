@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const connectDB = require('./config/database');
 const { startRtmpServer } = require('./services/rtmpServer');
 
@@ -22,6 +23,13 @@ app.use(express.json());
 // API Routes
 app.use('/api/accounts', accountRoutes);
 app.use('/api/stream', streamRoutes);
+
+// Frontend (production)
+app.use(express.static(path.join(__dirname, '../../client/dist')));
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) return next();
+  res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
+});
 
 // Health check
 app.get('/api/health', (req, res) => {
