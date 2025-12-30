@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  server:
+    build: ./server
+    container_name: calik-tv-server
+    restart: unless-stopped
+    ports:
+      - "3000:3000" # API
+      - "1935:1935" # RTMP
+      - "8000:8000" # HTTP Stream
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/calik-tv
+      - PORT=3000
+      - RTMP_PORT=1935
+      - STREAM_SECRET=calik-tv-2024
+      - SOCKS5_HOST=
+      - SOCKS5_PORT=
+      - VIRTUAL_HOST=caliktv.emreucmaz.com
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=caliktv.emreucmaz.com
+      - LETSENCRYPT_EMAIL=yemreucmzz@gmail.com
+
+networks:
+  proxy-net:
+    external: true
