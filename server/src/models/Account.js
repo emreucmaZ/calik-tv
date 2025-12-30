@@ -8,8 +8,7 @@ const accountSchema = new mongoose.Schema({
   },
   rtmpUrl: {
     type: String,
-    required: [true, 'RTMP URL zorunludur'],
-    default: 'rtmp://live-upload.instagram.com:80/rtmp/'
+    required: [true, 'RTMP URL zorunludur']
   },
   streamKey: {
     type: String,

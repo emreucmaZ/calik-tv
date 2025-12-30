@@ -32,7 +32,15 @@ class StreamRelay {
     const proxyPass = process.env.SOCKS5_PASS;
 
     // FFmpeg argümanları
-    const ffmpegArgs = ['-i', inputUrl];
+    const ffmpegArgs = [
+      '-re',           // Gerçek zamanlı okuma
+      '-i', inputUrl,
+      '-c:v', 'copy',  // Video codec kopyala
+      '-c:a', 'aac',   // Audio AAC olarak encode et (Instagram için)
+      '-ar', '44100',  // Audio sample rate
+      '-b:a', '128k',  // Audio bitrate
+      '-f', 'flv'      // FLV formatı
+    ];
 
     // Proxy varsa ekle (RTMP over SOCKS5)
     if (proxyHost && proxyPort) {
@@ -40,12 +48,14 @@ class StreamRelay {
       if (proxyUser && proxyPass) {
         proxyUrl = `socks5://${proxyUser}:${proxyPass}@${proxyHost}:${proxyPort}`;
       }
-      // FFmpeg SOCKS5 için -socks parametresi
       ffmpegArgs.push('-socks', proxyUrl);
       console.log(`[PROXY] SOCKS5 kullanılıyor: ${proxyHost}:${proxyPort}`);
     }
 
-    ffmpegArgs.push('-c', 'copy', '-f', 'flv', outputUrl);
+    // RTMPS için output URL
+    ffmpegArgs.push(outputUrl);
+
+    console.log(`[RELAY] Yayın başlatılıyor: ${outputUrl.substring(0, 50)}...`);
 
     // FFmpeg ile relay başlat
     this.ffmpegProcess = spawn('ffmpeg', ffmpegArgs);
