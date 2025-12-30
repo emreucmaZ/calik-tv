@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const connectDB = require('./config/database');
 const { startRtmpServer } = require('./services/rtmpServer');
 
@@ -21,6 +22,13 @@ app.set('trust proxy', 1);
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Stream Proxy (HTTP-FLV & HLS)
+app.use('/live', createProxyMiddleware({
+  target: 'http://127.0.0.1:8000',
+  changeOrigin: true,
+  ws: true
+}));
 
 // Public Routes
 app.use('/api/auth', authRoutes);

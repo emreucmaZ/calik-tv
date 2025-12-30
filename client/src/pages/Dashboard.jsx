@@ -9,8 +9,8 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [showPreview, setShowPreview] = useState(false);
 
-  // Stream URL (HTTP-FLV)
-  const streamUrl = `${window.location.protocol}//${window.location.hostname}:8000/live/calik-tv-2024.flv`;
+  // Stream URL (HTTP-FLV) - aynı domain üzerinden proxy
+  const streamUrl = `${window.location.origin}/live/calik-tv-2024.flv`;
 
   useEffect(() => {
     fetchData();
