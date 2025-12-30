@@ -9,7 +9,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [showPreview, setShowPreview] = useState(false);
 
-  // Stream URL (HTTP-FLV) - ayni domain uzerinden proxy
+  // Stream URL (HTTP-FLV) - aynı domain üzerinden proxy
   const streamUrl = `${window.location.origin}/live/calik-tv-2024.flv`;
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Dashboard() {
       setStatus(statusRes.data);
       setAccounts(accountsRes.data);
     } catch (error) {
-      console.error('Veri alinamadi:', error);
+      console.error('Veri alınamadı:', error);
     } finally {
       setLoading(false);
     }
@@ -37,11 +37,11 @@ export default function Dashboard() {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="flex items-center gap-3">
-          <svg className="animate-spin h-8 w-8 text-amber-500" viewBox="0 0 24 24">
+          <svg className="animate-spin h-8 w-8 text-orange-500" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
           </svg>
-          <span className="text-slate-400">Yukleniyor...</span>
+          <span className="text-slate-400">Yükleniyor...</span>
         </div>
       </div>
     );
@@ -53,7 +53,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-white">Dashboard</h2>
-          <p className="text-slate-400 text-sm mt-1">CALIK TV yayin kontrol merkezi</p>
+          <p className="text-slate-400 text-sm mt-1">ÇALIK TV yayın kontrol merkezi</p>
         </div>
         <div className="flex items-center gap-2">
           {status?.isStreaming && (
@@ -65,18 +65,18 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Canli Onizleme */}
+      {/* Canlı Önizleme */}
       <div className="card p-6">
         <div className="flex justify-between items-center mb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#1e3a5f] to-[#2d4a6f] rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
               </svg>
             </div>
             <div>
-              <h3 className="font-semibold text-white">Canli Onizleme</h3>
-              <p className="text-slate-500 text-sm">OBS'den gelen yayin</p>
+              <h3 className="font-semibold text-white">Canlı Önizleme</h3>
+              <p className="text-slate-500 text-sm">OBS'den gelen yayın</p>
             </div>
           </div>
           <button
@@ -96,7 +96,7 @@ export default function Dashboard() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Izle
+                İzle
               </>
             )}
           </button>
@@ -113,12 +113,12 @@ export default function Dashboard() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <p className="text-slate-400 mb-4">OBS'den gelen yayini izlemek icin</p>
+              <p className="text-slate-400 mb-4">OBS'den gelen yayını izlemek için</p>
               <button
                 onClick={() => setShowPreview(true)}
                 className="btn btn-primary"
               >
-                Onizlemeyi Baslat
+                Önizlemeyi Başlat
               </button>
             </div>
           </div>
@@ -128,19 +128,19 @@ export default function Dashboard() {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          OBS'den yayin baslatilmadiysa onizleme calismaz
+          OBS'den yayın başlatılmadıysa önizleme çalışmaz
         </p>
       </div>
 
-      {/* Durum Kartlari */}
+      {/* Durum Kartları */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Yayin Durumu */}
+        {/* Yayın Durumu */}
         <div className={`card p-6 ${status?.isStreaming ? 'bg-gradient-to-br from-red-600/20 to-red-700/20 border-red-500/30' : ''}`}>
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-slate-400 text-sm font-medium">Instagram Yayin</p>
+              <p className="text-slate-400 text-sm font-medium">Instagram Yayın</p>
               <p className={`text-3xl font-bold mt-2 ${status?.isStreaming ? 'text-red-400' : 'text-white'}`}>
-                {status?.isStreaming ? 'CANLI' : 'Kapali'}
+                {status?.isStreaming ? 'CANLI' : 'Kapalı'}
               </p>
               {status?.currentAccount && (
                 <p className="text-slate-400 text-sm mt-2">
@@ -160,31 +160,31 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Hesap Sayisi */}
+        {/* Hesap Sayısı */}
         <div className="card p-6">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-slate-400 text-sm font-medium">Kayitli Hesaplar</p>
+              <p className="text-slate-400 text-sm font-medium">Kayıtlı Hesaplar</p>
               <p className="text-3xl font-bold text-white mt-2">{accounts.length}</p>
               <p className="text-slate-400 text-sm mt-2">
                 <span className="text-green-400">{accounts.filter(a => a.isActive).length}</span> aktif
               </p>
             </div>
-            <div className="w-12 h-12 bg-[#1e3a5f]/30 rounded-xl flex items-center justify-center">
-              <svg className="w-6 h-6 text-[#2d4a6f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center">
+              <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>
           </div>
         </div>
 
-        {/* Hizli Islem */}
+        {/* Hızlı İşlem */}
         <div className="card p-6">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-slate-400 text-sm font-medium">Hizli Islem</p>
+              <p className="text-slate-400 text-sm font-medium">Hızlı İşlem</p>
               <p className="text-xl font-semibold text-white mt-2">
-                {status?.isStreaming ? 'Yayini Yonet' : 'Yayin Baslat'}
+                {status?.isStreaming ? 'Yayını Yönet' : 'Yayın Başlat'}
               </p>
               <Link
                 to="/stream"
@@ -196,7 +196,7 @@ export default function Dashboard() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    Yonet
+                    Yönet
                   </>
                 ) : (
                   <>
@@ -204,7 +204,7 @@ export default function Dashboard() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    Baslat
+                    Başlat
                   </>
                 )}
               </Link>
@@ -218,17 +218,17 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* OBS Baglanti Bilgisi */}
+      {/* OBS Bağlantı Bilgisi */}
       <div className="card p-6">
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 bg-amber-500/20 rounded-xl flex items-center justify-center">
-            <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-10 h-10 bg-orange-500/20 rounded-xl flex items-center justify-center">
+            <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
           </div>
           <div>
-            <h3 className="font-semibold text-white">OBS Baglanti Ayarlari</h3>
+            <h3 className="font-semibold text-white">OBS Bağlantı Ayarları</h3>
             <p className="text-slate-500 text-sm">Bu bilgileri OBS'e girin</p>
           </div>
         </div>
@@ -237,7 +237,7 @@ export default function Dashboard() {
           <div>
             <label className="block text-slate-400 text-sm font-medium mb-2">Sunucu</label>
             <div className="bg-slate-900 border border-slate-700 rounded-lg p-4 flex items-center justify-between">
-              <code className="text-amber-400 font-mono text-sm">rtmp://caliktv.emreucmaz.com:1935/live</code>
+              <code className="text-orange-400 font-mono text-sm">rtmp://caliktv.emreucmaz.com:1935/live</code>
               <button
                 onClick={() => navigator.clipboard.writeText('rtmp://caliktv.emreucmaz.com:1935/live')}
                 className="text-slate-500 hover:text-white transition-colors"
@@ -252,7 +252,7 @@ export default function Dashboard() {
           <div>
             <label className="block text-slate-400 text-sm font-medium mb-2">Stream Key</label>
             <div className="bg-slate-900 border border-slate-700 rounded-lg p-4 flex items-center justify-between">
-              <code className="text-amber-400 font-mono text-sm">calik-tv-2024</code>
+              <code className="text-orange-400 font-mono text-sm">calik-tv-2024</code>
               <button
                 onClick={() => navigator.clipboard.writeText('calik-tv-2024')}
                 className="text-slate-500 hover:text-white transition-colors"

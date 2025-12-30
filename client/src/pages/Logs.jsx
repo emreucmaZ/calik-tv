@@ -14,7 +14,7 @@ export default function Logs() {
       const res = await streamApi.getLogs();
       setLogs(res.data);
     } catch (error) {
-      console.error('Loglar yuklenemedi:', error);
+      console.error('Loglar yüklenemedi:', error);
     } finally {
       setLoading(false);
     }
@@ -27,8 +27,8 @@ export default function Logs() {
       error: 'bg-red-500/20 text-red-400 border border-red-500/30'
     };
     const labels = {
-      live: 'Canli',
-      ended: 'Tamamlandi',
+      live: 'Canlı',
+      ended: 'Tamamlandı',
       error: 'Hata'
     };
     return (
@@ -58,11 +58,11 @@ export default function Logs() {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="flex items-center gap-3">
-          <svg className="animate-spin h-8 w-8 text-amber-500" viewBox="0 0 24 24">
+          <svg className="animate-spin h-8 w-8 text-orange-500" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
           </svg>
-          <span className="text-slate-400">Yukleniyor...</span>
+          <span className="text-slate-400">Yükleniyor...</span>
         </div>
       </div>
     );
@@ -73,8 +73,8 @@ export default function Logs() {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-white">Yayin Gecmisi</h2>
-          <p className="text-slate-400 text-sm mt-1">Tum yayin kayitlarinizi goruntuleyin</p>
+          <h2 className="text-2xl font-bold text-white">Yayın Geçmişi</h2>
+          <p className="text-slate-400 text-sm mt-1">Tüm yayın kayıtlarınızı görüntüleyin</p>
         </div>
         <button
           onClick={fetchLogs}
@@ -94,7 +94,7 @@ export default function Logs() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
             </svg>
           </div>
-          <p className="text-slate-400">Henuz yayin kaydi yok</p>
+          <p className="text-slate-400">Henüz yayın kaydı yok</p>
         </div>
       ) : (
         <div className="card overflow-hidden">
@@ -104,9 +104,9 @@ export default function Logs() {
                 <tr className="bg-slate-900/50 border-b border-slate-700/50">
                   <th className="text-left px-6 py-4 text-slate-400 text-sm font-medium">Hesap</th>
                   <th className="text-left px-6 py-4 text-slate-400 text-sm font-medium">Durum</th>
-                  <th className="text-left px-6 py-4 text-slate-400 text-sm font-medium">Baslangic</th>
-                  <th className="text-left px-6 py-4 text-slate-400 text-sm font-medium">Bitis</th>
-                  <th className="text-left px-6 py-4 text-slate-400 text-sm font-medium">Sure</th>
+                  <th className="text-left px-6 py-4 text-slate-400 text-sm font-medium">Başlangıç</th>
+                  <th className="text-left px-6 py-4 text-slate-400 text-sm font-medium">Bitiş</th>
+                  <th className="text-left px-6 py-4 text-slate-400 text-sm font-medium">Süre</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-700/50">
@@ -120,7 +120,7 @@ export default function Logs() {
                           </svg>
                         </div>
                         <span className="text-white font-medium">
-                          {log.account?.name || 'Silinmis Hesap'}
+                          {log.account?.name || 'Silinmiş Hesap'}
                         </span>
                       </div>
                     </td>
@@ -136,7 +136,7 @@ export default function Logs() {
                         : '-'}
                     </td>
                     <td className="px-6 py-4">
-                      <span className="text-amber-400 font-medium">
+                      <span className="text-orange-400 font-medium">
                         {formatDuration(log.startedAt, log.endedAt)}
                       </span>
                     </td>
@@ -157,8 +157,8 @@ export default function Logs() {
               </svg>
             </div>
             <div>
-              <h3 className="font-semibold text-white">Hata Detaylari</h3>
-              <p className="text-slate-500 text-sm">Son yayin hatalarinin detaylari</p>
+              <h3 className="font-semibold text-white">Hata Detayları</h3>
+              <p className="text-slate-500 text-sm">Son yayın hatalarının detayları</p>
             </div>
           </div>
 

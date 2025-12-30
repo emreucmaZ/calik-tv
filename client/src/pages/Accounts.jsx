@@ -25,7 +25,7 @@ export default function Accounts() {
       const res = await accountApi.getAll();
       setAccounts(res.data);
     } catch (error) {
-      toast.error('Hesaplar yuklenemedi');
+      toast.error('Hesaplar yüklenemedi');
     } finally {
       setLoading(false);
     }
@@ -36,7 +36,7 @@ export default function Accounts() {
     try {
       if (editingId) {
         await accountApi.update(editingId, formData);
-        toast.success('Hesap guncellendi');
+        toast.success('Hesap güncellendi');
       } else {
         await accountApi.create(formData);
         toast.success('Hesap eklendi');
@@ -46,7 +46,7 @@ export default function Accounts() {
       setFormData(defaultFormData);
       fetchAccounts();
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Bir hata olustu');
+      toast.error(error.response?.data?.message || 'Bir hata oluştu');
     }
   };
 
@@ -62,7 +62,7 @@ export default function Accounts() {
   };
 
   const handleDelete = async (id) => {
-    if (!confirm('Bu hesabi silmek istediginize emin misiniz?')) return;
+    if (!confirm('Bu hesabı silmek istediğinize emin misiniz?')) return;
     try {
       await accountApi.delete(id);
       toast.success('Hesap silindi');
@@ -82,11 +82,11 @@ export default function Accounts() {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="flex items-center gap-3">
-          <svg className="animate-spin h-8 w-8 text-amber-500" viewBox="0 0 24 24">
+          <svg className="animate-spin h-8 w-8 text-orange-500" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
           </svg>
-          <span className="text-slate-400">Yukleniyor...</span>
+          <span className="text-slate-400">Yükleniyor...</span>
         </div>
       </div>
     );
@@ -97,8 +97,8 @@ export default function Accounts() {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-white">Instagram Hesaplari</h2>
-          <p className="text-slate-400 text-sm mt-1">Yayin yapilacak Instagram hesaplarini yonetin</p>
+          <h2 className="text-2xl font-bold text-white">Instagram Hesapları</h2>
+          <p className="text-slate-400 text-sm mt-1">Yayın yapılacak Instagram hesaplarını yönetin</p>
         </div>
         {!showForm && (
           <button
@@ -117,22 +117,22 @@ export default function Accounts() {
       {showForm && (
         <div className="card p-6 animate-slide-in">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#1e3a5f] to-[#2d4a6f] rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
             <div>
               <h3 className="font-semibold text-white">
-                {editingId ? 'Hesap Duzenle' : 'Yeni Hesap Ekle'}
+                {editingId ? 'Hesap Düzenle' : 'Yeni Hesap Ekle'}
               </h3>
-              <p className="text-slate-500 text-sm">Instagram yayin bilgilerini girin</p>
+              <p className="text-slate-500 text-sm">Instagram yayın bilgilerini girin</p>
             </div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-slate-400 text-sm font-medium mb-2">Hesap Adi</label>
+              <label className="block text-slate-400 text-sm font-medium mb-2">Hesap Adı</label>
               <input
                 type="text"
                 value={formData.name}
@@ -162,14 +162,14 @@ export default function Accounts() {
                 value={formData.streamKey}
                 onChange={(e) => setFormData({ ...formData, streamKey: e.target.value })}
                 className="input font-mono text-sm"
-                placeholder="Instagram'dan aldiginiz stream key"
+                placeholder="Instagram'dan aldığınız stream key"
                 required
               />
               <p className="text-slate-600 text-xs mt-2 flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Instagram &gt; Canli Yayin &gt; Stream Key kismindan alinir
+                Instagram → Canlı Yayın → Stream Key kısmından alınır
               </p>
             </div>
 
@@ -179,7 +179,7 @@ export default function Accounts() {
                 id="isActive"
                 checked={formData.isActive}
                 onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                className="w-5 h-5 rounded border-slate-600 bg-slate-900 text-amber-500 focus:ring-amber-500 focus:ring-offset-slate-800"
+                className="w-5 h-5 rounded border-slate-600 bg-slate-900 text-orange-500 focus:ring-orange-500 focus:ring-offset-slate-800"
               />
               <label htmlFor="isActive" className="text-slate-300 font-medium">
                 Hesap aktif
@@ -191,14 +191,14 @@ export default function Accounts() {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                {editingId ? 'Guncelle' : 'Kaydet'}
+                {editingId ? 'Güncelle' : 'Kaydet'}
               </button>
               <button
                 type="button"
                 onClick={handleCancel}
                 className="btn btn-ghost"
               >
-                Iptal
+                İptal
               </button>
             </div>
           </form>
@@ -214,12 +214,12 @@ export default function Accounts() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>
-            <p className="text-slate-400 mb-4">Henuz hesap eklenmemis</p>
+            <p className="text-slate-400 mb-4">Henüz hesap eklenmemiş</p>
             <button
               onClick={() => setShowForm(true)}
-              className="text-amber-400 hover:text-amber-300 font-medium"
+              className="text-orange-400 hover:text-orange-300 font-medium"
             >
-              Ilk hesabi ekle
+              İlk hesabı ekle
             </button>
           </div>
         ) : (
@@ -257,7 +257,7 @@ export default function Accounts() {
                   <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
-                  Duzenle
+                  Düzenle
                 </button>
                 <button
                   onClick={() => handleDelete(account._id)}

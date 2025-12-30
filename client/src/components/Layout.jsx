@@ -22,7 +22,7 @@ const navItems = [
   },
   {
     to: '/stream',
-    label: 'Yayin Kontrol',
+    label: 'Yayın Kontrol',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -31,7 +31,7 @@ const navItems = [
   },
   {
     to: '/logs',
-    label: 'Yayin Gecmisi',
+    label: 'Yayın Geçmişi',
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
@@ -52,25 +52,25 @@ export default function Layout() {
   return (
     <div className="min-h-screen flex bg-slate-900">
       {/* Sidebar */}
-      <aside className="w-72 bg-gradient-to-b from-[#1e3a5f] to-[#152a45] flex flex-col shadow-2xl">
+      <aside className="w-72 bg-gradient-to-b from-orange-600 to-orange-700 flex flex-col shadow-2xl">
         {/* Logo Section */}
         <div className="p-6 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center shadow-lg">
               <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
               </svg>
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white tracking-tight">CALIK TV</h1>
-              <p className="text-amber-400/80 text-xs font-medium">Canli Yayinin Adresi</p>
+              <h1 className="text-xl font-bold text-white tracking-tight">ÇALIK TV</h1>
+              <p className="text-white/70 text-xs font-medium">Canlı Yayının Adresi</p>
             </div>
           </div>
         </div>
 
         {/* Navigation */}
         <nav className="flex-1 p-4 space-y-1">
-          <p className="text-white/40 text-xs font-semibold uppercase tracking-wider px-4 mb-3">Menu</p>
+          <p className="text-white/50 text-xs font-semibold uppercase tracking-wider px-4 mb-3">Menü</p>
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -79,8 +79,8 @@ export default function Layout() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive
-                    ? 'bg-white/10 text-white border-l-2 border-amber-500 shadow-lg'
-                    : 'text-white/60 hover:bg-white/5 hover:text-white'
+                    ? 'bg-white/20 text-white border-l-2 border-white shadow-lg'
+                    : 'text-white/70 hover:bg-white/10 hover:text-white'
                 }`
               }
             >
@@ -91,14 +91,14 @@ export default function Layout() {
         </nav>
 
         {/* Stream Key Info */}
-        <div className="p-4 mx-4 mb-4 bg-white/5 rounded-xl border border-white/10">
+        <div className="p-4 mx-4 mb-4 bg-white/10 rounded-xl border border-white/10">
           <div className="flex items-center gap-2 mb-2">
-            <svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
             </svg>
-            <span className="text-white/60 text-xs font-medium">OBS Stream Key</span>
+            <span className="text-white/70 text-xs font-medium">OBS Stream Key</span>
           </div>
-          <code className="text-amber-400 text-sm font-mono bg-black/20 px-2 py-1 rounded block">
+          <code className="text-white text-sm font-mono bg-black/20 px-2 py-1 rounded block">
             calik-tv-2024
           </code>
         </div>
@@ -107,20 +107,20 @@ export default function Layout() {
         <div className="p-4 border-t border-white/10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
-                <svg className="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                <svg className="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </div>
               <div>
                 <p className="text-white font-medium text-sm">{user?.username}</p>
-                <p className="text-white/40 text-xs">Yonetici</p>
+                <p className="text-white/50 text-xs">Yönetici</p>
               </div>
             </div>
             <button
               onClick={handleLogout}
-              className="p-2 text-white/40 hover:text-red-400 hover:bg-white/5 rounded-lg transition-all"
-              title="Cikis Yap"
+              className="p-2 text-white/50 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+              title="Çıkış Yap"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
