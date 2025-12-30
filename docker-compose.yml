@@ -5,8 +5,9 @@ services:
     build: ./server
     container_name: calik-tv-server
     restart: unless-stopped
+    expose:
+      - "3000"
     ports:
-      - "3000:3000" # API
       - "1935:1935" # RTMP
       - "8000:8000" # HTTP Stream
     environment:
@@ -20,6 +21,8 @@ services:
       - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=caliktv.emreucmaz.com
       - LETSENCRYPT_EMAIL=yemreucmzz@gmail.com
+    networks:
+      - proxy-net
 
 networks:
   proxy-net:
