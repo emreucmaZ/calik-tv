@@ -2,6 +2,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const Account = require('./models/Account');
 const StreamLog = require('./models/StreamLog');
+const User = require('./models/User');
 
 const seedData = async () => {
   try {
@@ -11,7 +12,18 @@ const seedData = async () => {
     // Mevcut verileri temizle (opsiyonel)
     await Account.deleteMany({});
     await StreamLog.deleteMany({});
+    await User.deleteMany({});
     console.log('Mevcut veriler temizlendi');
+
+    // Admin kullanıcı oluştur
+    const admin = await User.create({
+      username: 'admin',
+      password: 'admin123',
+      role: 'admin'
+    });
+    console.log('Admin kullanıcı oluşturuldu');
+    console.log('  Kullanıcı: admin');
+    console.log('  Şifre: admin123');
 
     // Örnek hesaplar ekle
     const accounts = await Account.insertMany([

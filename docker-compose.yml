@@ -15,6 +15,7 @@ services:
       - PORT=3000
       - RTMP_PORT=1935
       - STREAM_SECRET=calik-tv-2024
+      - JWT_SECRET=calik-tv-super-secret-jwt-key-2024
       - SOCKS5_HOST=
       - SOCKS5_PORT=
       - VIRTUAL_HOST=caliktv.emreucmaz.com

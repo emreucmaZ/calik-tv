@@ -7,8 +7,10 @@ const connectDB = require('./config/database');
 const { startRtmpServer } = require('./services/rtmpServer');
 
 // Routes
+const authRoutes = require('./routes/auth');
 const accountRoutes = require('./routes/accounts');
 const streamRoutes = require('./routes/stream');
+const auth = require('./middleware/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,9 +22,12 @@ app.set('trust proxy', 1);
 app.use(cors());
 app.use(express.json());
 
-// API Routes
-app.use('/api/accounts', accountRoutes);
-app.use('/api/stream', streamRoutes);
+// Public Routes
+app.use('/api/auth', authRoutes);
+
+// Protected Routes (auth gerekli)
+app.use('/api/accounts', auth, accountRoutes);
+app.use('/api/stream', auth, streamRoutes);
 
 // Frontend (production)
 app.use(express.static(path.join(__dirname, '../../client/dist')));
