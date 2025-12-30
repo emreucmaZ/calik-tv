@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(npm install:*)",
-      "Bash(npm create:*)"
+      "Bash(npm create:*)",
+      "WebFetch(domain:nmkal.meb.k12.tr)",
+      "WebFetch(domain:nmkanadolulisesi.meb.k12.tr)",
+      "WebFetch(domain:www.instagram.com)"
     ]
   }
 }
