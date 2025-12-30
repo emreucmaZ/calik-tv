@@ -28,8 +28,9 @@ router.post('/start', async (req, res) => {
       return res.status(400).json({ message: 'Bu hesap aktif değil' });
     }
 
-    // RTMP sunucusundan gelen yayın URL'i
-    const inputUrl = `rtmp://127.0.0.1:${process.env.RTMP_PORT || 1935}/live/stream`;
+    // RTMP sunucusundan gelen yayın URL'i (OBS stream key ile eşleşmeli)
+    const streamKey = process.env.STREAM_SECRET || 'calik-tv-2024';
+    const inputUrl = `rtmp://127.0.0.1:${process.env.RTMP_PORT || 1935}/live/${streamKey}`;
 
     const streamLog = await streamRelay.start(account, inputUrl);
 
