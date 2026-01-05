@@ -425,12 +425,12 @@ export default function Dashboard() {
             </label>
             <div className="bg-slate-900 border border-slate-700 rounded-lg p-4 flex items-center justify-between">
               <code className="text-orange-400 font-mono text-sm">
-                rtmps://caliktv.gold4.me:1936/live
+                rtmps://stream.gold4.me:443/live
               </code>
               <button
                 onClick={() =>
                   navigator.clipboard.writeText(
-                    "rtmps://caliktv.gold4.me:1936/live"
+                    "rtmps://stream.gold4.me:443/live"
                   )
                 }
                 className="text-slate-500 hover:text-white transition-colors"

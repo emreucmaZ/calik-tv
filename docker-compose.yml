@@ -32,13 +32,29 @@ services:
     command: >
       sh -c "apk add --no-cache stunnel &&
              stunnel /etc/stunnel/stunnel.conf"
-    ports:
-      - "1936:1936"
+    expose:
+      - "1936"
     volumes:
       - ./server/stunnel.conf:/etc/stunnel/stunnel.conf:ro
       - /root/ngnix-proxy/certs:/certs:ro
     depends_on:
       - server
+    networks:
+      - proxy-net
+
+  sniproxy:
+    image: alpine:latest
+    container_name: calik-tv-sniproxy
+    restart: unless-stopped
+    command: >
+      sh -c "apk add --no-cache sniproxy &&
+             sniproxy -c /etc/sniproxy/sniproxy.conf -f"
+    ports:
+      - "443:443"
+    volumes:
+      - ./sniproxy/sniproxy.conf:/etc/sniproxy/sniproxy.conf:ro
+    depends_on:
+      - stunnel
     networks:
       - proxy-net
 
