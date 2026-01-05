@@ -26,11 +26,11 @@ services:
       - proxy-net
 
   stunnel:
-    image: dweomer/stunnel
+    image: stunnel/stunnel
     container_name: calik-tv-stunnel
     restart: unless-stopped
     ports:
-      - "1936:1936" # RTMPS
+      - "1936:1936"
     volumes:
       - ./server/stunnel.conf:/etc/stunnel/stunnel.conf:ro
       - /root/ngnix-proxy/certs:/certs:ro
