@@ -18,9 +18,9 @@ services:
       - JWT_SECRET=calik-tv-super-secret-jwt-key-2024
       - SOCKS5_HOST=
       - SOCKS5_PORT=
-      - VIRTUAL_HOST=caliktv.emreucmaz.com
+      - VIRTUAL_HOST=caliktv.infhex.com
       - VIRTUAL_PORT=3000
-      - LETSENCRYPT_HOST=caliktv.emreucmaz.com
+      - LETSENCRYPT_HOST=caliktv.infhex.com
       - LETSENCRYPT_EMAIL=yemreucmzz@gmail.com
     networks:
       - proxy-net
