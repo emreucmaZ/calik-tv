@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
     expose:
       - "3000"
+      - "1935"
     ports:
-      - "1935:1935" # RTMP
       - "8000:8000" # HTTP Stream
     environment:
       - MONGODB_URI=mongodb://mongo:27017/calik-tv
@@ -22,6 +22,20 @@ services:
       - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=caliktv.gold4.me
       - LETSENCRYPT_EMAIL=yemreucmzz@gmail.com
+    networks:
+      - proxy-net
+
+  stunnel:
+    image: dweomer/stunnel
+    container_name: calik-tv-stunnel
+    restart: unless-stopped
+    ports:
+      - "1936:1936" # RTMPS
+    volumes:
+      - ./server/stunnel.conf:/etc/stunnel/stunnel.conf:ro
+      - /root/ngnix-proxy/certs:/certs:ro
+    depends_on:
+      - server
     networks:
       - proxy-net
 
