@@ -26,9 +26,12 @@ services:
       - proxy-net
 
   stunnel:
-    image: stunnel/stunnel
+    image: alpine:latest
     container_name: calik-tv-stunnel
     restart: unless-stopped
+    command: >
+      sh -c "apk add --no-cache stunnel &&
+             stunnel /etc/stunnel/stunnel.conf"
     ports:
       - "1936:1936"
     volumes:
